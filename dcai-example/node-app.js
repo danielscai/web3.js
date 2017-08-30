@@ -15,3 +15,5 @@ console.log(balance.toString(10));
 console.log('add 21 to balance');
 var new_balance = balance.plus(21).toString(10);
 console.log(new_balance);
+console.log(web3.version.api);
+console.log(web3.version.network);
