@@ -33,4 +33,19 @@ var contract = c.at('0xb1e23ce2dd190d30e7c0d4f5907d43814d8c96e8');
 
 result = contract.multiply(7)
 console.log("print result")
-console.log(result)
+console.log(result.c)
+console.log(result.c)
+
+count = web3.eth.getTransactionCount('0xb1e23ce2dd190d30e7c0d4f5907d43814d8c96e8');
+console.log(count);
+
+var block_number;
+
+web3.eth.getBlockNumber(function(error,result){
+    var block_number = result;   
+    console.log(result);
+    });
+
+var info =  web3.eth.getBlock(1);
+var info =  web3.eth.getBlockTransactionCount(1);
+console.log(info);
