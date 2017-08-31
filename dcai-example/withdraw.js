@@ -20,7 +20,7 @@ var abi = [{"constant":false,"inputs":[],"name":"bet","outputs":[],"payable":tru
 var c = web3.eth.contract(abi);
 var contract = c.at(contract_address);
 
-contract.bet({from: coinbase, value: web3.toWei('2','ether') , gas: 200000}, function (error, result){
+contract.withdraw({from: coinbase, gas: 300000}, function (error, result){
     console.log('print bet result');
     console.log(error);
     console.log(result);
