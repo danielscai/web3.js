@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-var contract_address = '0x5c7ab21c67de17d43531a6740f581898acede017';
+var contract_address = '0xa22cd99692127cb2784bf3d76b029b293e17bea6';
 var Web3 = require('../index.js');
 var web3 = new Web3();
 

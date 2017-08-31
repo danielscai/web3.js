@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
-var contract_address = '0x293fec0955c00e31eed812f61dbe65f93eb3616b';
+//var contract_address = '0x293fec0955c00e31eed812f61dbe65f93eb3616b';
+var contract_address = '0xa22cd99692127cb2784bf3d76b029b293e17bea6';
 var Web3 = require('../index.js');
 var web3 = new Web3();
 
@@ -20,9 +21,7 @@ var abi = [{"constant":false,"inputs":[],"name":"bet","outputs":[],"payable":tru
 var c = web3.eth.contract(abi);
 var contract = c.at(contract_address);
 
-contract.getBalancesKV(0, function (error, result){
-    console.log('get balance of 0');
-    console.log(error);
-    console.log(result.toString(10));
-});
+var state = web3.eth.getStorageAt(contract_address, 11);
+console.log('get storage');
+console.log(state);
 
