@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 //var contract_address = '0x293fec0955c00e31eed812f61dbe65f93eb3616b';
-var contract_address = '0xa22cd99692127cb2784bf3d76b029b293e17bea6';
+var contract_address = '0x9e12b4c689e9995050dd224d43a40e98e3c733ec';
 var Web3 = require('../index.js');
 var web3 = new Web3();
 
@@ -21,7 +21,7 @@ var abi = [{"constant":false,"inputs":[],"name":"bet","outputs":[],"payable":tru
 var c = web3.eth.contract(abi);
 var contract = c.at(contract_address);
 
-var state = web3.eth.getStorageAt(contract_address, 11);
-console.log('get storage');
+var state = contract.bet_count().toString();
+console.log('contract bet count');
 console.log(state);
 
