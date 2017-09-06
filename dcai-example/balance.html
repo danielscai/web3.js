@@ -30,7 +30,7 @@ contract.bet_count(function(error, result){
 	if(!error){
 	console.log('contract bet count');
 	console.log(result.toString());
-	document.getElementById('coinbase').innerText = 'coinbase: ' + coinbase;
+	document.getElementById('coinbase').innerText = 'contract_address: ' + contract_address;
 	document.getElementById('original').innerText = 'bet count: ' + result.toString();
 	}
 	else{
@@ -43,8 +43,8 @@ contract.bet_count(function(error, result){
 </script>
 </head>
 <body>
-    <h1>coinbase balance</h1>
-    <button type="button" onClick="watchBalance();">watch balance</button>
+    <h1>otk contract info</h1>
+    <button type="button" onClick="watchBalance();">watch otk contract</button>
     <div></div>
     <div id="coinbase"></div>
     <div id="original"></div>
