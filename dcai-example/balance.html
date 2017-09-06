@@ -24,11 +24,13 @@ var contract = c.at(contract_address);
 
 function watchBalance() {
 contract.bet_count(function(error, result){
-    if(!error)
+	if(!error){
 	console.log('contract bet count');
 	console.log(result.toString());
-    else
+	}
+	else{
         console.error(error);
+	}
 })
 }
 
