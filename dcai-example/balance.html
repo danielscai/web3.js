@@ -78,6 +78,11 @@ document.getElementById('current').innerText +=  '\n 当前已投注数量: ' + 
 current_bet = result;
 });
 
+contract.bet_status(function(error, result){
+document.getElementById('current').innerText +=  '\n 合约状态: ' + result.toString();
+});
+
+
 console.log('current_bet')
 console.log(current_bet);
 
@@ -95,6 +100,25 @@ function sendBalance(){
     )
 }
 
+function openLottery() {
+contract.openLottery(3,
+        {from: web3.eth.coinbase , 
+        to: window.contract_address,
+        gas: 2000000}, function(error, result){
+document.getElementById('open').innerText +=  '\n 开奖: ' + result.toString();
+});
+}
+
+
+function withdraw() {
+
+contract.withdraw(
+        {from: web3.eth.coinbase , 
+        to: window.contract_address,
+        gas: 2000000}, function(error, result){
+document.getElementById('withdraw').innerText +=  '\n 撤回投注: ' + result.toString();
+});
+}
 
 </script>
 </head>
@@ -102,11 +126,15 @@ function sendBalance(){
     <h1>OTK 合约信息 </h1>
     <button type="button" onClick="sendBalance();">开始投注</button>
     <button type="button" onClick="watchBalance();">刷新信息</button>
+    <button type="button" onClick="openLottery();">开奖</button>
+    <button type="button" onClick="withdraw();">撤回投注</button>
     <div></div>
     <div id="coinbase"></div>
     <div id="original"></div>
     <div id="current"></div>
     <div id="diff"></div>
+    <div id="open"></div>
+    <div id="withdraw"></div>
 </body>
 </html>
 
