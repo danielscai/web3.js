@@ -47,8 +47,8 @@ contract.bet_count(function(error, result){
 	if(!error){
 	console.log('contract bet count');
 	console.log(result.toString());
-	document.getElementById('coinbase').innerText = 'contract_address: ' + contract_address;
-	document.getElementById('original').innerText = 'bet count: ' + result.toString();
+	document.getElementById('coinbase').innerText = '合约地址: ' + contract_address;
+	document.getElementById('original').innerText = '最大投注数量: ' + result.toString();
 	}
 	else{
         console.error(error);
@@ -60,8 +60,8 @@ contract.bet_count(function(error, result){
 </script>
 </head>
 <body>
-    <h1>otk contract info</h1>
-    <button type="button" onClick="watchBalance();">watch otk contract</button>
+    <h1>OTK 合约信息 </h1>
+    <button type="button" onClick="watchBalance();">查看</button>
     <div></div>
     <div id="coinbase"></div>
     <div id="original"></div>
