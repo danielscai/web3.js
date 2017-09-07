@@ -51,7 +51,7 @@ contract.bet_count(function(error, result){
 	console.log('contract bet count');
 	console.log(result.toString());
 	document.getElementById('coinbase').innerText = '合约地址: ' + contract_address;
-	document.getElementById('original').innerText = '最大投注数量: ' + result.toString();
+	document.getElementById('original').innerText = '筹集目标数量: ' + result.toString();
 	}
 	else{
         console.error(error);
