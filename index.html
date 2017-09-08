@@ -84,7 +84,7 @@ function sendBalance(){
         from: web3.eth.coinbase , 
         to: window.contract_address,
         value: web3.toWei(0.1, 'ether'),
-        gas: 2000000
+        gas: 200000
     }
     web3.eth.sendTransaction(payload , function(error, result){
         updateElement('sendTransaction', result.toString());
@@ -96,7 +96,7 @@ function openLottery() {
     var payload = {
         from: web3.eth.coinbase , 
         to: window.contract_address,
-        gas: 2000000}
+        gas: 200000}
     contract.openLottery(3,payload, function(error, result){
         updateElement('openLottery', result.toString());
         }
@@ -107,7 +107,7 @@ function openLottery() {
 function withdraw() {
     var payload = {from: web3.eth.coinbase , 
         to: window.contract_address,
-        gas: 2000000}
+        gas: 200000}
     contract.withdraw(payload, function(error, result){
         content = '撤回投注: ' + result.toString();
         updateElement('withdraw', content);
