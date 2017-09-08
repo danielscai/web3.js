@@ -2,9 +2,13 @@
 <html>
 
 <head>
-<meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
 <script type="text/javascript" src="../node_modules/bignumber.js/bignumber.min.js"></script>
 <script type="text/javascript" src="../dist/web3-light.js"></script>
+
 <script type="text/javascript">
 
 var Web3 = require('web3');
@@ -45,96 +49,116 @@ function startApp(){
 }
 
 
+function updateElement(name, content){
+    document.getElementById(name).innerText =  content;
+}
+
 function watchBalance() {
+
+updateElement('contract_address', contract_address);
+
 contract.bet_count(function(error, result){
-	if(!error){
-	console.log('contract bet count');
-	console.log(result.toString());
-	document.getElementById('coinbase').innerText = '合约地址: ' + contract_address;
-	document.getElementById('original').innerText = '筹集目标数量: ' + result.toString();
-	}
-	else{
-        console.error(error);
-	}
+    updateElement('total_bet', result.toString());
 });
 
 contract.total_bet(function(error, result){
-	if(!error){
-	console.log(result.toString());
-	document.getElementById('current').innerText = '总投注数量: ' + result.toString();
-	}
-	else{
-        console.error(error);
-	}
+    updateElement('total_bet', web3.fromWei(result.toString()));
 });
 
 contract.minimal_bet(function(error, result){
-document.getElementById('current').innerText +=  '\n 最小投注数量: ' + web3.fromWei(result.toString());
+    updateElement('minimal_bet', web3.fromWei(result.toString()));
 });
 
-var current_bet;
 contract.current_bet(function(error, result){
-document.getElementById('current').innerText +=  '\n 当前已投注数量: ' + web3.fromWei(result.toString());
-current_bet = result;
+    updateElement('current_bet', web3.fromWei(result.toString()));
 });
 
 contract.bet_status(function(error, result){
-document.getElementById('current').innerText +=  '\n 合约状态: ' + result.toString();
+    updateElement('bet_status', result.toString());
 });
-
-
-console.log('current_bet')
-console.log(current_bet);
 
 }
 
 function sendBalance(){
-    web3.eth.sendTransaction(
-        {from: web3.eth.coinbase , 
+    var payload = {
+        from: web3.eth.coinbase , 
         to: window.contract_address,
         value: web3.toWei(0.1, 'ether'),
-        gas: 2000000}, function(error, result){
-             
-        document.getElementById('diff').innerText +=  '\n 投注交易哈希: ' + result.toString();
+        gas: 2000000
+    }
+    web3.eth.sendTransaction(payload , function(error, result){
+        updateElement('sendTransaction', result.toString());
         }
     )
 }
 
 function openLottery() {
-contract.openLottery(3,
-        {from: web3.eth.coinbase , 
+    var payload = {
+        from: web3.eth.coinbase , 
         to: window.contract_address,
-        gas: 2000000}, function(error, result){
-document.getElementById('open').innerText +=  '\n 开奖: ' + result.toString();
-});
+        gas: 2000000}
+    contract.openLottery(3,payload, function(error, result){
+        updateElement('openLottery', result.toString());
+        }
+    );
 }
 
 
 function withdraw() {
-
-contract.withdraw(
-        {from: web3.eth.coinbase , 
+    var payload = {from: web3.eth.coinbase , 
         to: window.contract_address,
-        gas: 2000000}, function(error, result){
-document.getElementById('withdraw').innerText +=  '\n 撤回投注: ' + result.toString();
-});
+        gas: 2000000}
+    contract.withdraw(payload, function(error, result){
+        content = '撤回投注: ' + result.toString();
+        updateElement('withdraw', content);
+    });
 }
 
 </script>
 </head>
 <body>
+    <div class="container">
+    <div class="container">
     <h1>OTK 合约信息 </h1>
-    <button type="button" onClick="sendBalance();">开始投注</button>
-    <button type="button" onClick="watchBalance();">刷新信息</button>
-    <button type="button" onClick="openLottery();">开奖</button>
-    <button type="button" onClick="withdraw();">撤回投注</button>
+    </div>
+    <button type="button" class="btn btn-default" onClick="watchBalance();">刷新信息</button>
+    <button type="button" class="btn btn-primary" onClick="openLottery();">开奖</button>
+    <button type="button" class="btn btn-warning" onClick="withdraw();">撤回投注</button>
+    <button type="button" class="btn btn-success" onClick="sendBalance();">开始投注</button>
     <div></div>
-    <div id="coinbase"></div>
-    <div id="original"></div>
-    <div id="current"></div>
-    <div id="diff"></div>
-    <div id="open"></div>
-    <div id="withdraw"></div>
+    <h3>合约进度</h3>
+    <div class="progress">
+      <div class="progress-bar" role="progressbar" id="progress-of" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+        70%
+      </div>
+    </div>
+
+
+<table class="table">
+    <caption>基本的表格布局</caption>
+   <thead>
+      <tr>
+         <th>名称</th>
+         <th>信息</th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr> <td>合约地址</td> <td><div id="contract_address"></div> </td> </tr>
+      <tr> <td>总投注数量</td> <td><div id="total_bet"></div> </td> </tr>
+      <tr> <td>最小投注数量</td> <td><div id="minimal_bet"></div> </td> </tr>
+      <tr> <td>当前已投注数量</td> <td><div id="current_bet"></div> </td> </tr>
+      <tr> <td>合约状态</td> <td><div id="bet_status"></div> </td> </tr>
+      <tr> <td>撤回投注哈希</td> <td><div id="withdraw"></div> </td> </tr>
+      <tr> <td>投注交易哈希</td> <td><div id="sendTransaction"></div> </td> </tr>
+      <tr> <td>开奖哈希</td> <td><div id="openLottery"></div> </td> </tr>
+   </tbody>
+</table>
+
+
+    </div>
+    <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
 </body>
 </html>
 
