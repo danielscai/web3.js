@@ -83,12 +83,17 @@ contract.bet_status(function(error, result){
 }
 
 function sendBalance(){
+    if (web3.eth.coinbase == null){
+      alert("请先解锁 Metamask");
+      return; 
+    }
     var payload = {
         from: web3.eth.coinbase , 
         to: window.contract_address,
         value: web3.toWei(0.1, 'ether'),
         gas: 200000
-    }
+    };
+    console.log(payload)
     web3.eth.sendTransaction(payload , function(error, result){
         updateElement('sendTransaction', result.toString());
         }
@@ -99,7 +104,7 @@ function openLottery() {
     var payload = {
         from: web3.eth.coinbase , 
         to: window.contract_address,
-        gas: 200000}
+        gas: 200000};
     contract.openLottery(3,payload, function(error, result){
         updateElement('openLottery', result.toString());
         }
@@ -119,24 +124,21 @@ function withdraw() {
 
 </script>
 </head>
-<body bgcolor="#34495e">
-    
-    <div class="container">
-    <div class="container">
-    <h1>OTK 合约信息 </h1>
-    </div>
-    <button type="button" class="btn btn-default" onClick="watchBalance();">刷新信息</button>
-    <button type="button" class="btn btn-primary" onClick="openLottery();">开奖</button>
-    <button type="button" class="btn btn-warning" onClick="withdraw();">撤回投注</button>
-    <button type="button" class="btn btn-success" onClick="sendBalance();">开始投注</button>
-    <div></div>
-    <h3>合约进度</h3>
-    <div class="progress">
-      <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" id="progress-of" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-        70%
-      </div>
-    </div>
+<body>
 
+
+  
+    <div class="container">
+  <div class="page-header">
+    <h1>OTK 合约信息 </h1>
+<!--     <small>
+      <div>账号</div>
+      <div id="coinbase"></div>
+      <div>余额</div>
+      <div id="balance"></div>
+    </small> -->
+  </div>
+    
 
 <table class="table">
     <caption>OTK合约信息</caption>
@@ -147,6 +149,33 @@ function withdraw() {
       </tr>
    </thead>
    <tbody>
+      <tr>
+        <td>操作</td>
+        <td>    
+          </div>
+          <button type="button" class="btn btn-default" onClick="watchBalance();">
+              <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>刷新信息
+          </button>
+          <button type="button" class="btn btn-primary" onClick="openLottery();">开奖</button>
+          <button type="button" class="btn btn-warning" onClick="withdraw();">撤回投注</button>
+
+<!--           <div class="alert alert-warning alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>Warning!</strong> Better check yourself, you're not looking too good.
+          </div> -->
+
+
+          <button type="button" class="btn btn-success" onClick="sendBalance();">
+             <span class="glyphicon glyphicon-btc" aria-hidden="true"></span>
+            开始投注</button>
+          <div>
+        </td>
+      <tr><td>合约进度</td> <td>
+        <div class="progress">
+          <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" id="progress-of" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+            70%
+          </div>
+        </div>
       <tr> <td>合约地址</td> <td><div id="contract_address"></div> </td> </tr>
       <tr> <td>总投注数量</td> <td><div id="total_bet"></div> </td> </tr>
       <tr> <td>最小投注数量</td> <td><div id="minimal_bet"></div> </td> </tr>
