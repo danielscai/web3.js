@@ -1,0 +1,192 @@
+<!doctype>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<script type="text/javascript" src="./node_modules/bignumber.js/bignumber.min.js"></script>
+<script type="text/javascript" src="./dist/web3-light.js"></script>
+<style type="text/css">
+
+body {background-color: #ecf0f1}
+</style>
+<script type="text/javascript">
+
+var Web3 = require('web3');
+//var web3 = new Web3();
+
+window.addEventListener('load', function() {
+
+  // Checking if Web3 has been injected by the browser (Mist/MetaMask)
+  if (typeof web3 !== 'undefined') {
+    // Use Mist/MetaMask's provider
+    window.web3 = new Web3(web3.currentProvider);
+  } else {
+    console.log('No web3? You should consider trying MetaMask!')
+    // fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
+    window.web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+  }
+
+  // Now you can start your app & access web3 freely:
+  startApp()
+var abi = [{"type":"function","payable":false,"outputs":[{"type":"uint256","name":""}],"name":"platform_reward_percentage","inputs":[],"constant":true},{"type":"function","payable":true,"outputs":[],"name":"bet","inputs":[],"constant":false},{"type":"function","payable":false,"outputs":[{"type":"uint256","name":""}],"name":"max_betting_value","inputs":[],"constant":true},{"type":"function","payable":false,"outputs":[{"type":"bytes32","name":""}],"name":"bettingIds","inputs":[{"type":"address","name":""},{"type":"uint256","name":""}],"constant":true},{"type":"function","payable":false,"outputs":[{"type":"uint256","name":""}],"name":"new_max_betting_percentage","inputs":[],"constant":true},{"type":"function","payable":false,"outputs":[],"name":"setMiniAndCount","inputs":[{"type":"uint256","name":"m_b"},{"type":"uint256","name":"b_c"}],"constant":false},{"type":"function","payable":false,"outputs":[],"name":"withdraw","inputs":[],"constant":false},{"type":"function","payable":false,"outputs":[{"type":"uint256","name":""}],"name":"new_platform_reward_percentage","inputs":[],"constant":true},{"type":"function","payable":false,"outputs":[{"type":"uint256","name":""}],"name":"new_bet_count","inputs":[],"constant":true},{"type":"function","payable":false,"outputs":[],"name":"close","inputs":[],"constant":false},{"type":"function","payable":false,"outputs":[{"type":"uint256","name":""}],"name":"minimal_bet","inputs":[],"constant":true},{"type":"function","payable":false,"outputs":[{"type":"bool","name":""}],"name":"withdrawLottery","inputs":[],"constant":false},{"type":"function","payable":false,"outputs":[{"type":"uint8","name":""}],"name":"bet_status","inputs":[],"constant":true},{"type":"function","payable":true,"outputs":[],"name":"openLottery","inputs":[{"type":"uint256","name":"random_index"}],"constant":false},{"type":"function","payable":false,"outputs":[{"type":"uint256","name":""}],"name":"random_number","inputs":[],"constant":true},{"type":"function","payable":false,"outputs":[{"type":"address","name":"key"},{"type":"uint256","name":"value"}],"name":"getBalancesKV","inputs":[{"type":"uint256","name":"index"}],"constant":true},{"type":"function","payable":false,"outputs":[{"type":"uint256","name":""}],"name":"current_bet","inputs":[],"constant":true},{"type":"function","payable":false,"outputs":[{"type":"uint256","name":""}],"name":"max_betting_percentage","inputs":[],"constant":true},{"type":"function","payable":false,"outputs":[{"type":"uint256","name":""}],"name":"total_bet","inputs":[],"constant":true},{"type":"function","payable":false,"outputs":[],"name":"acceptOwnership","inputs":[],"constant":false},{"type":"function","payable":false,"outputs":[{"type":"uint256","name":"size"},{"type":"uint256","name":"num"}],"name":"balances","inputs":[],"constant":true},{"type":"function","payable":false,"outputs":[{"type":"uint256","name":""}],"name":"bet_count","inputs":[],"constant":true},{"type":"function","payable":false,"outputs":[],"name":"setBetCount","inputs":[{"type":"uint256","name":"b_c"}],"constant":false},{"type":"function","payable":false,"outputs":[{"type":"address","name":""}],"name":"owner","inputs":[],"constant":true},{"type":"function","payable":false,"outputs":[{"type":"uint256","name":""}],"name":"global_index","inputs":[],"constant":true},{"type":"function","payable":false,"outputs":[{"type":"address","name":""}],"name":"oraclize_random_service","inputs":[],"constant":true},{"type":"function","payable":false,"outputs":[],"name":"changeOwner","inputs":[{"type":"address","name":"_newOwner"}],"constant":false},{"type":"function","payable":false,"outputs":[{"type":"bytes32","name":""}],"name":"lottery_id","inputs":[],"constant":true},{"type":"function","payable":false,"outputs":[],"name":"setLottery","inputs":[{"type":"uint256","name":"random_index"}],"constant":false},{"type":"function","payable":false,"outputs":[{"type":"address","name":""}],"name":"newOwner","inputs":[],"constant":true},{"type":"function","payable":false,"outputs":[],"name":"setMaxBettingPercent","inputs":[{"type":"uint256","name":"p"}],"constant":false},{"type":"function","payable":false,"outputs":[],"name":"setMinimalbet","inputs":[{"type":"uint256","name":"m_b"}],"constant":false},{"type":"function","payable":false,"outputs":[],"name":"setPlatformReward","inputs":[{"type":"uint256","name":"p"}],"constant":false},{"type":"function","payable":false,"outputs":[{"type":"uint256","name":""}],"name":"better_pending_lottery","inputs":[{"type":"address","name":""}],"constant":true},{"type":"function","payable":false,"outputs":[{"type":"uint256","name":""}],"name":"new_minimal_bet","inputs":[],"constant":true},{"type":"constructor","payable":false,"inputs":[{"type":"uint256","name":"mini"},{"type":"uint256","name":"b_c"},{"type":"uint256","name":"m_p"},{"type":"uint256","name":"p_r"},{"type":"address","name":"o_s"}]},{"type":"fallback","payable":true},{"type":"event","name":"Beted","inputs":[{"type":"address","name":"sender","indexed":true},{"type":"uint256","name":"value","indexed":true}],"anonymous":false},{"type":"event","name":"Withdraw","inputs":[{"type":"address","name":"sender","indexed":true},{"type":"uint256","name":"value","indexed":true}],"anonymous":false},{"type":"event","name":"LotteryHit","inputs":[{"type":"address","name":"lottery_reveiver","indexed":true},{"type":"bytes32","name":"id","indexed":true},{"type":"uint256","name":"lottery_value","indexed":true}],"anonymous":false},{"type":"event","name":"PlatformReward","inputs":[{"type":"address","name":"reward_receiver","indexed":true},{"type":"uint256","name":"reward_value","indexed":true}],"anonymous":false},{"type":"event","name":"OpenLottery","inputs":[{"type":"address","name":"opener","indexed":true},{"type":"uint256","name":"rand_num","indexed":true}],"anonymous":false},{"type":"event","name":"SendBettingId","inputs":[{"type":"address","name":"id_receiver","indexed":true},{"type":"bytes32","name":"id","indexed":true}],"anonymous":false},{"type":"event","name":"BetterPendingLottery","inputs":[{"type":"address","name":"lottery_pend_reveiver","indexed":true},{"type":"bytes32","name":"pend_id","indexed":true},{"type":"uint256","name":"lottery_pend_value","indexed":true}],"anonymous":false}]
+
+var contract_address = '0x4f7d630814447f1b4c0719bb7a259c2bfd63f174';
+var c = web3.eth.contract(abi);
+var contract = c.at(contract_address);
+window.abi = abi;
+window.contract_address = contract_address;
+window.c = c;
+window.contract = contract;
+
+watchBalance();
+})
+
+function startApp(){
+
+//var contract_address = '0x9e12b4c689e9995050dd224d43a40e98e3c733ec';
+//var coinbase = web3.eth.coinbase;
+
+}
+
+
+function updateElement(name, content){
+    document.getElementById(name).innerText =  content;
+}
+
+function watchBalance() {
+
+updateElement('contract_address', contract_address);
+
+contract.bet_count(function(error, result){
+    updateElement('total_bet', result.toString());
+});
+
+contract.total_bet(function(error, result){
+    updateElement('total_bet', web3.fromWei(result.toString()));
+});
+
+contract.minimal_bet(function(error, result){
+    updateElement('minimal_bet', web3.fromWei(result.toString()));
+});
+
+contract.current_bet(function(error, result){
+    updateElement('current_bet', web3.fromWei(result.toString()));
+});
+
+contract.bet_status(function(error, result){
+    updateElement('bet_status', result.toString());
+});
+
+}
+
+function sendBalance(){
+    if (web3.eth.coinbase == null){
+      alert("请先解锁 Metamask");
+      return; 
+    }
+    var payload = {
+        from: web3.eth.coinbase , 
+        to: window.contract_address,
+        value: web3.toWei(0.1, 'ether'),
+        gas: 200000
+    };
+    console.log(payload)
+    web3.eth.sendTransaction(payload , function(error, result){
+        updateElement('sendTransaction', result.toString());
+        }
+    )
+}
+
+function openLottery() {
+    var payload = {
+        from: web3.eth.coinbase , 
+        to: window.contract_address,
+        gas: 200000};
+    contract.openLottery(3,payload, function(error, result){
+        updateElement('openLottery', result.toString());
+        }
+    );
+}
+
+
+function roll() {
+    var payload = {
+        from: web3.eth.coinbase ,
+        to: window.contract_address,
+        gas: 200000};
+    contract.openLottery(3,payload, function(error, result){
+        updateElement('openLottery', result.toString());
+        }
+    );
+}
+
+function withdraw() {
+    var payload = {from: web3.eth.coinbase , 
+        to: window.contract_address,
+        gas: 200000}
+    contract.withdraw(payload, function(error, result){
+        content = '撤回投注: ' + result.toString();
+        updateElement('withdraw', content);
+    });
+}
+
+</script>
+</head>
+<body>
+
+
+  
+    <div class="container">
+  <div class="page-header">
+    <h1>OTK Dice 骰子游戏  </h1>
+<!--     <small>
+      <div>账号</div>
+      <div id="coinbase"></div>
+      <div>余额</div>
+      <div id="balance"></div>
+    </small> -->
+  </div>
+    
+
+<table class="table">
+    <caption>OTK Dice 骰子游戏</caption>
+   <thead>
+      <tr>
+         <th>名称</th>
+         <th>信息</th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr><td>投注金额</td> <td> 100</td> </tr>
+      <tr><td>赢的机会</td> <td> 50</td> </tr>
+      <tr>
+        <td>操作</td>
+        <td>    
+          </div>
+          <button type="button" class="btn btn-default" onClick="watchBalance();">
+              <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>刷新信息
+          </button>
+
+          <button type="button" class="btn btn-success" onClick="roll();">
+             <span class="glyphicon glyphicon-btc" aria-hidden="true"></span>
+            开始投注</button>
+          <div>
+        </td>
+        </div>
+      <tr> <td>合约地址</td> <td><div id="contract_address"></div> </td> </tr>
+      <tr> <td>投注交易哈希</td> <td><div id="sendTransaction"></div> </td> </tr>
+      <tr> <td>开奖哈希</td> <td><div id="openLottery"></div> </td> </tr>
+   </tbody>
+</table>
+
+
+    </div>
+    <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+
