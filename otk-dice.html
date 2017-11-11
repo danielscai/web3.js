@@ -31,9 +31,9 @@ window.addEventListener('load', function() {
 
   // Now you can start your app & access web3 freely:
   startApp()
-var abi = [{"type":"function","payable":false,"outputs":[{"type":"uint256","name":""}],"name":"platform_reward_percentage","inputs":[],"constant":true},{"type":"function","payable":true,"outputs":[],"name":"bet","inputs":[],"constant":false},{"type":"function","payable":false,"outputs":[{"type":"uint256","name":""}],"name":"max_betting_value","inputs":[],"constant":true},{"type":"function","payable":false,"outputs":[{"type":"bytes32","name":""}],"name":"bettingIds","inputs":[{"type":"address","name":""},{"type":"uint256","name":""}],"constant":true},{"type":"function","payable":false,"outputs":[{"type":"uint256","name":""}],"name":"new_max_betting_percentage","inputs":[],"constant":true},{"type":"function","payable":false,"outputs":[],"name":"setMiniAndCount","inputs":[{"type":"uint256","name":"m_b"},{"type":"uint256","name":"b_c"}],"constant":false},{"type":"function","payable":false,"outputs":[],"name":"withdraw","inputs":[],"constant":false},{"type":"function","payable":false,"outputs":[{"type":"uint256","name":""}],"name":"new_platform_reward_percentage","inputs":[],"constant":true},{"type":"function","payable":false,"outputs":[{"type":"uint256","name":""}],"name":"new_bet_count","inputs":[],"constant":true},{"type":"function","payable":false,"outputs":[],"name":"close","inputs":[],"constant":false},{"type":"function","payable":false,"outputs":[{"type":"uint256","name":""}],"name":"minimal_bet","inputs":[],"constant":true},{"type":"function","payable":false,"outputs":[{"type":"bool","name":""}],"name":"withdrawLottery","inputs":[],"constant":false},{"type":"function","payable":false,"outputs":[{"type":"uint8","name":""}],"name":"bet_status","inputs":[],"constant":true},{"type":"function","payable":true,"outputs":[],"name":"openLottery","inputs":[{"type":"uint256","name":"random_index"}],"constant":false},{"type":"function","payable":false,"outputs":[{"type":"uint256","name":""}],"name":"random_number","inputs":[],"constant":true},{"type":"function","payable":false,"outputs":[{"type":"address","name":"key"},{"type":"uint256","name":"value"}],"name":"getBalancesKV","inputs":[{"type":"uint256","name":"index"}],"constant":true},{"type":"function","payable":false,"outputs":[{"type":"uint256","name":""}],"name":"current_bet","inputs":[],"constant":true},{"type":"function","payable":false,"outputs":[{"type":"uint256","name":""}],"name":"max_betting_percentage","inputs":[],"constant":true},{"type":"function","payable":false,"outputs":[{"type":"uint256","name":""}],"name":"total_bet","inputs":[],"constant":true},{"type":"function","payable":false,"outputs":[],"name":"acceptOwnership","inputs":[],"constant":false},{"type":"function","payable":false,"outputs":[{"type":"uint256","name":"size"},{"type":"uint256","name":"num"}],"name":"balances","inputs":[],"constant":true},{"type":"function","payable":false,"outputs":[{"type":"uint256","name":""}],"name":"bet_count","inputs":[],"constant":true},{"type":"function","payable":false,"outputs":[],"name":"setBetCount","inputs":[{"type":"uint256","name":"b_c"}],"constant":false},{"type":"function","payable":false,"outputs":[{"type":"address","name":""}],"name":"owner","inputs":[],"constant":true},{"type":"function","payable":false,"outputs":[{"type":"uint256","name":""}],"name":"global_index","inputs":[],"constant":true},{"type":"function","payable":false,"outputs":[{"type":"address","name":""}],"name":"oraclize_random_service","inputs":[],"constant":true},{"type":"function","payable":false,"outputs":[],"name":"changeOwner","inputs":[{"type":"address","name":"_newOwner"}],"constant":false},{"type":"function","payable":false,"outputs":[{"type":"bytes32","name":""}],"name":"lottery_id","inputs":[],"constant":true},{"type":"function","payable":false,"outputs":[],"name":"setLottery","inputs":[{"type":"uint256","name":"random_index"}],"constant":false},{"type":"function","payable":false,"outputs":[{"type":"address","name":""}],"name":"newOwner","inputs":[],"constant":true},{"type":"function","payable":false,"outputs":[],"name":"setMaxBettingPercent","inputs":[{"type":"uint256","name":"p"}],"constant":false},{"type":"function","payable":false,"outputs":[],"name":"setMinimalbet","inputs":[{"type":"uint256","name":"m_b"}],"constant":false},{"type":"function","payable":false,"outputs":[],"name":"setPlatformReward","inputs":[{"type":"uint256","name":"p"}],"constant":false},{"type":"function","payable":false,"outputs":[{"type":"uint256","name":""}],"name":"better_pending_lottery","inputs":[{"type":"address","name":""}],"constant":true},{"type":"function","payable":false,"outputs":[{"type":"uint256","name":""}],"name":"new_minimal_bet","inputs":[],"constant":true},{"type":"constructor","payable":false,"inputs":[{"type":"uint256","name":"mini"},{"type":"uint256","name":"b_c"},{"type":"uint256","name":"m_p"},{"type":"uint256","name":"p_r"},{"type":"address","name":"o_s"}]},{"type":"fallback","payable":true},{"type":"event","name":"Beted","inputs":[{"type":"address","name":"sender","indexed":true},{"type":"uint256","name":"value","indexed":true}],"anonymous":false},{"type":"event","name":"Withdraw","inputs":[{"type":"address","name":"sender","indexed":true},{"type":"uint256","name":"value","indexed":true}],"anonymous":false},{"type":"event","name":"LotteryHit","inputs":[{"type":"address","name":"lottery_reveiver","indexed":true},{"type":"bytes32","name":"id","indexed":true},{"type":"uint256","name":"lottery_value","indexed":true}],"anonymous":false},{"type":"event","name":"PlatformReward","inputs":[{"type":"address","name":"reward_receiver","indexed":true},{"type":"uint256","name":"reward_value","indexed":true}],"anonymous":false},{"type":"event","name":"OpenLottery","inputs":[{"type":"address","name":"opener","indexed":true},{"type":"uint256","name":"rand_num","indexed":true}],"anonymous":false},{"type":"event","name":"SendBettingId","inputs":[{"type":"address","name":"id_receiver","indexed":true},{"type":"bytes32","name":"id","indexed":true}],"anonymous":false},{"type":"event","name":"BetterPendingLottery","inputs":[{"type":"address","name":"lottery_pend_reveiver","indexed":true},{"type":"bytes32","name":"pend_id","indexed":true},{"type":"uint256","name":"lottery_pend_value","indexed":true}],"anonymous":false}]
+var abi =[{"constant":true,"inputs":[],"name":"totalWeiWon","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"maxProfitAsPercentOfHouse","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"newHouseEdge","type":"uint256"}],"name":"ownerSetHouseEdge","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"myid","type":"bytes32"},{"name":"result","type":"string"}],"name":"__callback","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"payoutsPaused","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"newTreasury","type":"address"}],"name":"ownerSetTreasury","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"myid","type":"bytes32"},{"name":"result","type":"string"},{"name":"proof","type":"bytes"}],"name":"__callback","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"maxNumber","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"addressToCheck","type":"address"}],"name":"playerGetPendingTxByAddress","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"newContractBalanceInWei","type":"uint256"}],"name":"ownerUpdateContractBalance","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"maxProfitDivisor","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"newPayoutStatus","type":"bool"}],"name":"ownerPausePayouts","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"newOwner","type":"address"}],"name":"ownerChangeOwner","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"minNumber","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"newMaxProfitAsPercent","type":"uint256"}],"name":"ownerSetMaxProfitAsPercentOfHouse","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"treasury","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"totalWeiWagered","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"newMinimumBet","type":"uint256"}],"name":"ownerSetMinBet","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"newStatus","type":"bool"}],"name":"ownerPauseGame","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"gasForOraclize","outputs":[{"name":"","type":"uint32"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"sendTo","type":"address"},{"name":"amount","type":"uint256"}],"name":"ownerTransferEther","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"contractBalance","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"owner","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"minBet","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[],"name":"playerWithdrawPendingTransactions","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"maxProfit","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"totalBets","outputs":[{"name":"","type":"int256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"gamePaused","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"originalPlayerBetId","type":"bytes32"},{"name":"sendTo","type":"address"},{"name":"originalPlayerProfit","type":"uint256"},{"name":"originalPlayerBetValue","type":"uint256"}],"name":"ownerRefundPlayer","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"newSafeGasToOraclize","type":"uint32"}],"name":"ownerSetOraclizeSafeGas","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[],"name":"ownerkill","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"houseEdge","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"rollUnder","type":"uint256"}],"name":"playerRollDice","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"constant":true,"inputs":[],"name":"houseEdgeDivisor","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"maxPendingPayouts","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"inputs":[],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"payable":true,"stateMutability":"payable","type":"fallback"},{"anonymous":false,"inputs":[{"indexed":true,"name":"BetID","type":"bytes32"},{"indexed":true,"name":"PlayerAddress","type":"address"},{"indexed":true,"name":"RewardValue","type":"uint256"},{"indexed":false,"name":"ProfitValue","type":"uint256"},{"indexed":false,"name":"BetValue","type":"uint256"},{"indexed":false,"name":"PlayerNumber","type":"uint256"}],"name":"LogBet","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"ResultSerialNumber","type":"uint256"},{"indexed":true,"name":"BetID","type":"bytes32"},{"indexed":true,"name":"PlayerAddress","type":"address"},{"indexed":false,"name":"PlayerNumber","type":"uint256"},{"indexed":false,"name":"DiceResult","type":"uint256"},{"indexed":false,"name":"Value","type":"uint256"},{"indexed":false,"name":"Status","type":"int256"},{"indexed":false,"name":"Proof","type":"bytes"}],"name":"LogResult","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"BetID","type":"bytes32"},{"indexed":true,"name":"PlayerAddress","type":"address"},{"indexed":true,"name":"RefundValue","type":"uint256"}],"name":"LogRefund","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"SentToAddress","type":"address"},{"indexed":true,"name":"AmountTransferred","type":"uint256"}],"name":"LogOwnerTransfer","type":"event"}] 
 
-var contract_address = '0x4f7d630814447f1b4c0719bb7a259c2bfd63f174';
+var contract_address = '0xf562bb619da38135fffe965ca7f886a04a46f61a';
 var c = web3.eth.contract(abi);
 var contract = c.at(contract_address);
 window.abi = abi;
@@ -60,25 +60,26 @@ function watchBalance() {
 
 updateElement('contract_address', contract_address);
 
-contract.bet_count(function(error, result){
+contract.minBet(function(error, result){
+    updateElement('min_bet', web3.fromWei(result.toString()));
+});
+<!--
+contract.contractBalance(function(error, result){
     updateElement('total_bet', result.toString());
 });
 
-contract.total_bet(function(error, result){
+contract.houseEdge(function(error, result){
     updateElement('total_bet', web3.fromWei(result.toString()));
 });
 
-contract.minimal_bet(function(error, result){
-    updateElement('minimal_bet', web3.fromWei(result.toString()));
-});
-
-contract.current_bet(function(error, result){
+contract.maxPendingPayouts(function(error, result){
     updateElement('current_bet', web3.fromWei(result.toString()));
 });
 
-contract.bet_status(function(error, result){
+contract.totalWeiWon(function(error, result){
     updateElement('bet_status', result.toString());
 });
+-->
 
 }
 
@@ -112,12 +113,26 @@ function openLottery() {
 }
 
 
+function setMinBet() {
+    var payload = {
+        from: web3.eth.coinbase , 
+        to: window.contract_address,
+        gas: 200000};
+    contract.ownerSetMinBet(web3.toWei(0.001, 'ether'),payload, function(error, result){
+        updateElement('openLottery', result.toString());
+        }
+    );
+}
+
+
+
 function roll() {
     var payload = {
         from: web3.eth.coinbase ,
         to: window.contract_address,
+        value: web3.toWei(0.1, 'ether'),
         gas: 200000};
-    contract.openLottery(3,payload, function(error, result){
+    contract.playerRollDice(51,payload, function(error, result){
         updateElement('openLottery', result.toString());
         }
     );
@@ -160,12 +175,16 @@ function withdraw() {
       </tr>
    </thead>
    <tbody>
-      <tr><td>投注金额</td> <td> 100</td> </tr>
+      <tr><td>投注金额</td> <td> 0.1 ETH</td> </tr>
       <tr><td>赢的机会</td> <td> 50</td> </tr>
       <tr>
         <td>操作</td>
         <td>    
           </div>
+          <button type="button" class="btn btn-default" onClick="setMinBet();">
+              <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>修改最小投注为0.001
+          </button>
+
           <button type="button" class="btn btn-default" onClick="watchBalance();">
               <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>刷新信息
           </button>
@@ -177,6 +196,7 @@ function withdraw() {
         </td>
         </div>
       <tr> <td>合约地址</td> <td><div id="contract_address"></div> </td> </tr>
+      <tr> <td>最小投注额</td> <td><div id="min_bet"></div> </td> </tr>
       <tr> <td>投注交易哈希</td> <td><div id="sendTransaction"></div> </td> </tr>
       <tr> <td>开奖哈希</td> <td><div id="openLottery"></div> </td> </tr>
    </tbody>
