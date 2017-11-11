@@ -130,8 +130,8 @@ function roll() {
     var payload = {
         from: web3.eth.coinbase ,
         to: window.contract_address,
-        value: web3.toWei(0.1, 'ether'),
-        gas: 200000};
+        value: web3.toWei(0.01, 'ether'),
+        gas: 500000};
     contract.playerRollDice(51,payload, function(error, result){
         updateElement('openLottery', result.toString());
         }
@@ -175,7 +175,7 @@ function withdraw() {
       </tr>
    </thead>
    <tbody>
-      <tr><td>投注金额</td> <td> 0.1 ETH</td> </tr>
+      <tr><td>投注金额</td> <td> 0.01 ETH</td> </tr>
       <tr><td>赢的机会</td> <td> 50</td> </tr>
       <tr>
         <td>操作</td>
@@ -196,6 +196,7 @@ function withdraw() {
         </td>
         </div>
       <tr> <td>合约地址</td> <td><div id="contract_address"></div> </td> </tr>
+      <tr> <td>合约余额</td> <td><div id="contract_balance"></div> </td> </tr>
       <tr> <td>最小投注额</td> <td><div id="min_bet"></div> </td> </tr>
       <tr> <td>投注交易哈希</td> <td><div id="sendTransaction"></div> </td> </tr>
       <tr> <td>开奖哈希</td> <td><div id="openLottery"></div> </td> </tr>
