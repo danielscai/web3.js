@@ -58,6 +58,7 @@ function updateElement(name, content){
 
 function watchBalance() {
 
+
 updateElement('contract_address', contract_address);
 
 contract.minBet(function(error, result){
@@ -130,9 +131,9 @@ function roll() {
     var payload = {
         from: web3.eth.coinbase ,
         to: window.contract_address,
-        value: web3.toWei(0.01, 'ether'),
+        value: web3.toWei(Number($("#amount").val()), 'ether'),
         gas: 500000};
-    contract.playerRollDice(51,payload, function(error, result){
+    contract.playerRollDice(Number($("#change").val()),payload, function(error, result){
         updateElement('openLottery', result.toString());
         }
     );
@@ -175,8 +176,15 @@ function withdraw() {
       </tr>
    </thead>
    <tbody>
-      <tr><td>投注金额</td> <td> 0.01 ETH</td> </tr>
-      <tr><td>赢的机会</td> <td> 50</td> </tr>
+      <tr><td>投注金额</td> <td>
+        <div class="col-sm-2"> 
+            <input type="text" class="form-control" id="amount" value="0.01" > 
+            </div> ETH
+      </td> </tr>
+      <tr><td>赢的机会</td> <td> 
+        <div class="col-sm-2"> 
+            <input type="text" class="form-control" id="chance" value="50" > 
+        </div></td> </tr>
       <tr>
         <td>操作</td>
         <td>    
