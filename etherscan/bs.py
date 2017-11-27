@@ -6,16 +6,22 @@ import datetime
 import random
 import websockets
 
+
+merged=[]
+
 async def crawl():
     now = datetime.datetime.utcnow().isoformat() + 'Z'
     rdata = { "betid":"hello","player":"world","now":now}
+    merged.append(rdata)
     return json.dumps(rdata)
 
 async def time(websocket, path):
+    global merged
     while True:
         now = await crawl()
         await websocket.send(now)
-        await asyncio.sleep(random.random() * 3)
+        await asyncio.sleep(1)
+        print(len(merged))
 
 start_server = websockets.serve(time, '', 8999)
 
