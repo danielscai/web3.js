@@ -48,7 +48,7 @@ async def send_message():
         message +=1
         print(connected)
         print("message {}".format(message))
-        [ws.send('message') for ws in connected]
+        [ws.send('message:') for ws in connected]
         await asyncio.sleep(1)
 
 async def handlerReg(websocket, path):
@@ -56,12 +56,11 @@ async def handlerReg(websocket, path):
     # Register.
     print('connected {}'.format(websocket))
     connected.add(websocket)
+    print(id(connected))
     try:
         # Implement logic here.
-        #while True:
         await asyncio.wait([websocket.send('hi')])
         await asyncio.wait([consumer_handler(websocket, path)])
-        #await asyncio.wait([ws.send("world") for ws in connected])
     finally:
         # Unregister.
         print('removed {}'.format(websocket))
