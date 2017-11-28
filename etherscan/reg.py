@@ -44,43 +44,12 @@ message = 0
 async def send_message():
     global connected
     global message
-    #while message != 0:
     while True:
-    #if 1:
         message +=1
         print(connected)
         print("message {}".format(message))
-        #a=[ws.send("message {}!".format(message)) for ws in connected]
+        [ws.send('message') for ws in connected]
         await asyncio.sleep(1)
-        #await asyncio.wait([ws.send(str(message)) for ws in connected])
-        #a=[ws.send("message {}!".format(message)) for ws in connected]
-        #for ws in connected:
-        #    ws.send("message {}!".format(message))
-        await asyncio.wait([ws.send("message {}!".format(message)) for ws in connected])
-
-def send_message2():
-    global connected
-    global message
-    #while message != 0:
-    while True:
-    #if 1:
-        message +=1
-        print(connected)
-        print("message {}".format(message))
-        #a=[ws.send("message {}!".format(message)) for ws in connected]
-        time.sleep(1)
-        #a=[ws.send("message {}!".format(message)) for ws in connected]
-        for ws in connected:
-            ws.send("message {}!".format(message))
-        #await asyncio.wait([ws.send("message {}!".format(message)) for ws in connected])
-#task = asyncio.ensure_future(send_message())
-
-async def mock(websocket,path):
-    #send_message2()
-    await asyncio.wait([send_message(),handlerReg(websocket,path)])
-    #await handlerReg(websocket,path)
-    #await send_message()
-
 
 async def handlerReg(websocket, path):
     global connected
@@ -99,8 +68,10 @@ async def handlerReg(websocket, path):
         connected.remove(websocket)
 
 
-start_server = websockets.serve(mock, '', 8999)
 
-asyncio.get_event_loop().run_until_complete(start_server)
+task1 = asyncio.ensure_future(send_message())
+start_server = websockets.serve(handlerReg, '', 8999)
+tasks = asyncio.wait([task1, start_server])
+
+asyncio.get_event_loop().run_until_complete(tasks)
 asyncio.get_event_loop().run_forever()
-
