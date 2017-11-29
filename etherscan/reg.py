@@ -21,7 +21,8 @@ async def send_message():
     global message
     while True:
         message +=1
-        await asyncio.wait([ws.send('message {}'.format(message)) for ws in connected])
+        if connected:
+            await asyncio.wait([ws.send('message {}'.format(message)) for ws in connected])
         await asyncio.sleep(1)
 
 async def handlerReg(websocket, path):
