@@ -3,9 +3,13 @@
 import time
 import asyncio
 import websockets
+import requests
+from requests import Session
 
 message = 0
 connected = set()
+
+session = Session()
 
 async def consumer_handler(websocket, path):
     while True:
@@ -16,6 +20,7 @@ async def consumer(message):
     global connected
     await asyncio.wait([ws.send(message) for ws in connected])
 
+
 async def send_message():
     global connected
     global message
@@ -23,7 +28,7 @@ async def send_message():
         message +=1
         if connected:
             await asyncio.wait([ws.send('message {}'.format(message)) for ws in connected])
-        await asyncio.sleep(1)
+        await asyncio.sleep(2)
 
 async def handlerReg(websocket, path):
     global connected

@@ -1,4 +1,4 @@
-#!/usr/bin/python 
+#!/usr/bin/python3 
 
 import re
 import json 
@@ -19,10 +19,15 @@ def read_json_from_file(file_name):
 
 last_ok_block = 4623060
 
+from requests_futures.sessions import FuturesSession
+
+session = FuturesSession()
+
 
 def get_block_hight():
     url = 'https://etherscan.io/blocks'
-    r = requests.get(url)
+    future = session.get(url)
+    r = future.result()
     html = etree.HTML(r.text)
     result  = html.xpath('/html/body/div[1]/div[4]/div[1]/div[1]/span[2]')
     info  = result[0]
@@ -50,8 +55,8 @@ def request_ether_scan(fromBlock,toBlock):
         apikey=apikey,
     )
     print(url)
-    #r =  requests.get(url)
-    #return r.json()
+    r =  requests.get(url)
+    return r.json()
 
 def stream_scan():
     block_hight = get_block_hight()
@@ -84,7 +89,14 @@ def print_log_result(result):
     Proof = data[258::]
     
     p_address = Web3.toChecksumAddress(PlayerAddress)
+    result = {
+       "bet_time": str(bet_time),
+       "p_address": p_address,
+       "PlayerNumber": int(PlayerNumber,16),
+       "DiceResult": int(DiceResult,16),
+    }
     print(bet_time.isoformat(), p_address, int(PlayerNumber,16), int(DiceResult,16))
+    return json.dumps(result)
 
 
 
@@ -98,8 +110,7 @@ results2= parsed_log_result['result']
 #for r in results2:
 #    print_log_result(r)
     
-#request_ether_scan()
-get_block_hight()
-
-#for r in results:
-#    print_log_bet(r)
+results = request_ether_scan(4617000,4617001)
+#print(get_block_hight())
+for r in results['result']:
+    print(print_log_result(r))
